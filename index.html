@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SelfIDeed</title>
+  <meta name="robots" content="noindex">
+  <link rel="alternate" hreflang="en" href="https://selfideed.com/en/">
+  <link rel="alternate" hreflang="nl" href="https://selfideed.com/nl/">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>
+    /* Fallback language pick. On the live server Nginx does this before the page loads (see nginx/selfideed.conf). */
+    (function () {
+      var supported = ["en", "nl"];
+      var pick = null;
+      try { pick = localStorage.getItem("sid_lang"); } catch (e) {}
+      var m = document.cookie.match(/(?:^|; )sid_lang=(en|nl)/);
+      if (m) pick = m[1];
+      if (supported.indexOf(pick) === -1) {
+        pick = "en";
+        var prefs = navigator.languages || [navigator.language || "en"];
+        for (var i = 0; i < prefs.length; i++) {
+          var l = String(prefs[i]).slice(0, 2).toLowerCase();
+          if (supported.indexOf(l) !== -1) { pick = l; break; }
+        }
+      }
+      location.replace(pick + "/");
+    })();
+  </script>
+</head>
+<body>
+  <p><a href="en/">English</a> · <a href="nl/">Nederlands</a></p>
+</body>
+</html>
