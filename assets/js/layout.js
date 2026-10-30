@@ -14,7 +14,11 @@
   if (LANGS.indexOf(lang) === -1) lang = "en";
   var path = document.body.getAttribute("data-path") || "";
   var isHome = path === "";
-  var home = ROOT + lang + "/";
+  /* On selfideed.com Nginx serves folder addresses (/en/about/). Elsewhere (a local copy, a preview)
+     folder links get index.html added so they still open. */
+  var CLEAN = /(^|\.)selfideed\.com$/.test(location.hostname);
+  function dir(u) { return CLEAN ? u : u.replace(/\/(#.*)?$/, "/index.html$1"); }
+  var home = dir(ROOT + lang + "/");
 
   var T = {
     en: {
@@ -57,13 +61,13 @@
   function href(target) {
     if (/^(mailto:|https?:)/.test(target)) return target;
     if (target.charAt(0) === "#") return isHome ? target : home + target;
-    return home + target;
+    return dir(ROOT + lang + "/" + target);
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function langLinks() {
     return LANGS.map(function (l) {
       var cur = l === lang;
-      return '<a href="' + ROOT + l + "/" + path + '" hreflang="' + l + '" lang="' + l + '" data-lang="' + l + '"' +
+      return '<a href="' + dir(ROOT + l + "/" + path) + '" hreflang="' + l + '" lang="' + l + '" data-lang="' + l + '"' +
         (cur ? ' aria-current="true"' : "") + ' title="' + esc(t.langName[l]) + '">' + l.toUpperCase() + "</a>";
     }).join("");
   }
@@ -98,7 +102,7 @@
         '<nav aria-label="Main"><ul>' + mobileItems + "</ul></nav>" +
         '<div class="mobile-menu__lang" role="group" aria-label="' + esc(t.langLabel) + '">' +
           LANGS.map(function (l) {
-            return '<a href="' + ROOT + l + "/" + path + '" hreflang="' + l + '" lang="' + l + '" data-lang="' + l + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + esc(t.langName[l]) + "</a>";
+            return '<a href="' + dir(ROOT + l + "/" + path) + '" hreflang="' + l + '" lang="' + l + '" data-lang="' + l + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + esc(t.langName[l]) + "</a>";
           }).join("") +
         "</div>" +
       "</div>";
@@ -147,7 +151,7 @@
             "<p>© " + new Date().getFullYear() + " SelfIDeed. " + esc(t.rights) + "</p>" +
             '<div class="footer-lang" role="group" aria-label="' + esc(t.langLabel) + '">' + icons.globe +
               LANGS.map(function (l) {
-                return '<a href="' + ROOT + l + "/" + path + '" hreflang="' + l + '" lang="' + l + '" data-lang="' + l + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + esc(t.langName[l]) + "</a>";
+                return '<a href="' + dir(ROOT + l + "/" + path) + '" hreflang="' + l + '" lang="' + l + '" data-lang="' + l + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + esc(t.langName[l]) + "</a>";
               }).join("") +
             "</div>" +
           "</div>" +
@@ -164,8 +168,16 @@
     try { localStorage.setItem("sid_lang", l); } catch (err) { /* storage unavailable */ }
   });
 
+  /* Folder links written in the page itself (for example "countries/") */
+  if (!CLEAN) {
+    Array.prototype.forEach.call(document.querySelectorAll("main a[href]"), function (a) {
+      var h = a.getAttribute("href");
+      if (!/^(https?:|mailto:|tel:|#|\/)/.test(h)) a.setAttribute("href", dir(h));
+    });
+  }
+
   /* All app buttons on the page use the same address. */
   Array.prototype.forEach.call(document.querySelectorAll("[data-app-link]"), function (a) { a.href = APP_URL; });
 
-  window.SelfIDeed = { APP_URL: APP_URL, ROOT: ROOT, lang: lang };
+  window.SelfIDeed = { APP_URL: APP_URL, ROOT: ROOT, lang: lang, url: function (p) { return dir(ROOT + lang + "/" + p); } };
 })();

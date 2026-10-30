@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landen en fotoformaten | SelfIDeed</title>
+  <meta name="description" content="Officiële fotoformaten voor paspoort, ID-kaart en visum per land. Maak je foto thuis met SelfIDeed.">
+  <link rel="canonical" href="https://selfideed.com/nl/countries/">
+  <link rel="alternate" hreflang="en" href="https://selfideed.com/en/countries/">
+  <link rel="alternate" hreflang="nl" href="https://selfideed.com/nl/countries/">
+  <meta property="og:site_name" content="SelfIDeed">
+  <meta property="og:title" content="Landen en fotoformaten | SelfIDeed">
+  <meta property="og:description" content="Officiële fotoformaten voor paspoort, ID-kaart en visum per land. Maak je foto thuis met SelfIDeed.">
+  <link rel="icon" href="../../favicon.ico" sizes="48x48">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preload" href="../../assets/fonts/InterDisplay-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <script src="../../assets/js/consent.js"></script>
+  <script src="../../assets/js/layout.js" defer></script>
+</head>
+<body data-path="countries/">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section page-intro" aria-labelledby="page-title">
+      <div class="container">
+        <h1 class="headline-1" id="page-title">Landen en fotoformaten</h1>
+        <p class="body-large">Zoek je land en document voor het officiële fotoformaat. Alle andere eisen controleert SelfIDeed voor je.</p>
+      </div>
+    </section>
+
+    <!-- PLACEHOLDER data: replace with the full list from the Excel file -->
+    <section class="section">
+      <div class="container">
+        <div class="country-search">
+          <label class="field-label" for="country-q">Zoek een land</label>
+          <input class="input" id="country-q" type="search" autocomplete="off" aria-describedby="country-q-help">
+          <p class="field-help" id="country-q-help">Bijvoorbeeld Nederland of Canada</p>
+        </div>
+        <ul class="country-list" id="country-list">
+          <li class="country-row" id="australia" data-name="australia australië"><strong>Australië</strong><span class="docs-of">Paspoort</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="belgium" data-name="belgium belgië"><strong>België</strong><span class="docs-of">Paspoort, ID-kaart</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="canada" data-name="canada canada"><strong>Canada</strong><span class="docs-of">Paspoort</span><span class="size">50&thinsp;×&thinsp;70&nbsp;mm</span></li>
+          <li class="country-row" id="china" data-name="china china"><strong>China</strong><span class="docs-of">Visum</span><span class="size">33&thinsp;×&thinsp;48&nbsp;mm</span></li>
+          <li class="country-row" id="germany" data-name="germany duitsland"><strong>Duitsland</strong><span class="docs-of">Paspoort, ID-kaart</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="france" data-name="france frankrijk"><strong>Frankrijk</strong><span class="docs-of">Paspoort, ID-kaart</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="ireland" data-name="ireland ierland"><strong>Ierland</strong><span class="docs-of">Paspoort</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="japan" data-name="japan japan"><strong>Japan</strong><span class="docs-of">Paspoort</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="netherlands" data-name="netherlands nederland"><strong>Nederland</strong><span class="docs-of">Paspoort, ID-kaart, rijbewijs</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="schengen" data-name="schengen area schengengebied"><strong>Schengengebied</strong><span class="docs-of">Schengenvisum</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="united-kingdom" data-name="united kingdom verenigd koninkrijk"><strong>Verenigd Koninkrijk</strong><span class="docs-of">Paspoort</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="united-states" data-name="united states verenigde staten"><strong>Verenigde Staten</strong><span class="docs-of">Paspoort, visum</span><span class="size">2&thinsp;×&thinsp;2&nbsp;in (51&thinsp;×&thinsp;51&nbsp;mm)</span></li>
+        </ul>
+        <p class="country-empty" id="country-empty" hidden>Geen land gevonden. Controleer de spelling, of mail ons op info@selfideed.com en we laten je weten of we het ondersteunen.</p>
+        <p class="country-empty caption">Deze lijst toont een selectie. De volledige lijst met 64 landen volgt binnenkort.</p>
+        <div class="actions" style="margin-top: var(--space-7)">
+          <a class="btn btn--primary" href="https://test.selfideed.com" data-app-link>Maak je foto</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+  <script>
+    (function () {
+      var q = document.getElementById("country-q"), rows = document.querySelectorAll(".country-row"), empty = document.getElementById("country-empty");
+      q.addEventListener("input", function () {
+        var v = q.value.trim().toLowerCase(), shown = 0;
+        Array.prototype.forEach.call(rows, function (r) { var ok = !v || r.getAttribute("data-name").indexOf(v) !== -1; r.hidden = !ok; if (ok) shown++; });
+        empty.hidden = shown !== 0;
+      });
+    })();
+  </script>
+</body>
+</html>

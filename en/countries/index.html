@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Countries and photo sizes | SelfIDeed</title>
+  <meta name="description" content="Official passport, ID card and visa photo sizes by country. Make your photo at home with SelfIDeed.">
+  <link rel="canonical" href="https://selfideed.com/en/countries/">
+  <link rel="alternate" hreflang="en" href="https://selfideed.com/en/countries/">
+  <link rel="alternate" hreflang="nl" href="https://selfideed.com/nl/countries/">
+  <meta property="og:site_name" content="SelfIDeed">
+  <meta property="og:title" content="Countries and photo sizes | SelfIDeed">
+  <meta property="og:description" content="Official passport, ID card and visa photo sizes by country. Make your photo at home with SelfIDeed.">
+  <link rel="icon" href="../../favicon.ico" sizes="48x48">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preload" href="../../assets/fonts/InterDisplay-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <script src="../../assets/js/consent.js"></script>
+  <script src="../../assets/js/layout.js" defer></script>
+</head>
+<body data-path="countries/">
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="section page-intro" aria-labelledby="page-title">
+      <div class="container">
+        <h1 class="headline-1" id="page-title">Countries and photo sizes</h1>
+        <p class="body-large">Find your country and document to see the official photo size. SelfIDeed checks every other rule for you.</p>
+      </div>
+    </section>
+
+    <!-- PLACEHOLDER data: replace with the full list from the Excel file -->
+    <section class="section">
+      <div class="container">
+        <div class="country-search">
+          <label class="field-label" for="country-q">Search for a country</label>
+          <input class="input" id="country-q" type="search" autocomplete="off" aria-describedby="country-q-help">
+          <p class="field-help" id="country-q-help">For example Netherlands or Canada</p>
+        </div>
+        <ul class="country-list" id="country-list">
+          <li class="country-row" id="australia" data-name="australia australië"><strong>Australia</strong><span class="docs-of">Passport</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="belgium" data-name="belgium belgië"><strong>Belgium</strong><span class="docs-of">Passport, ID card</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="canada" data-name="canada canada"><strong>Canada</strong><span class="docs-of">Passport</span><span class="size">50&thinsp;×&thinsp;70&nbsp;mm</span></li>
+          <li class="country-row" id="china" data-name="china china"><strong>China</strong><span class="docs-of">Visa</span><span class="size">33&thinsp;×&thinsp;48&nbsp;mm</span></li>
+          <li class="country-row" id="france" data-name="france frankrijk"><strong>France</strong><span class="docs-of">Passport, ID card</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="germany" data-name="germany duitsland"><strong>Germany</strong><span class="docs-of">Passport, ID card</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="ireland" data-name="ireland ierland"><strong>Ireland</strong><span class="docs-of">Passport</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="japan" data-name="japan japan"><strong>Japan</strong><span class="docs-of">Passport</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="netherlands" data-name="netherlands nederland"><strong>Netherlands</strong><span class="docs-of">Passport, ID card, driving licence</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="schengen" data-name="schengen area schengengebied"><strong>Schengen area</strong><span class="docs-of">Schengen visa</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="united-kingdom" data-name="united kingdom verenigd koninkrijk"><strong>United Kingdom</strong><span class="docs-of">Passport</span><span class="size">35&thinsp;×&thinsp;45&nbsp;mm</span></li>
+          <li class="country-row" id="united-states" data-name="united states verenigde staten"><strong>United States</strong><span class="docs-of">Passport, visa</span><span class="size">2&thinsp;×&thinsp;2&nbsp;in (51&thinsp;×&thinsp;51&nbsp;mm)</span></li>
+        </ul>
+        <p class="country-empty" id="country-empty" hidden>No country found. Check the spelling, or email us at info@selfideed.com and we'll tell you if we support it.</p>
+        <p class="country-empty caption">This list shows a selection. The full list of 64 countries follows soon.</p>
+        <div class="actions" style="margin-top: var(--space-7)">
+          <a class="btn btn--primary" href="https://test.selfideed.com" data-app-link>Start your photo</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+  <script>
+    (function () {
+      var q = document.getElementById("country-q"), rows = document.querySelectorAll(".country-row"), empty = document.getElementById("country-empty");
+      q.addEventListener("input", function () {
+        var v = q.value.trim().toLowerCase(), shown = 0;
+        Array.prototype.forEach.call(rows, function (r) { var ok = !v || r.getAttribute("data-name").indexOf(v) !== -1; r.hidden = !ok; if (ok) shown++; });
+        empty.hidden = shown !== 0;
+      });
+    })();
+  </script>
+</body>
+</html>

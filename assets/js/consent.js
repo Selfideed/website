@@ -58,7 +58,7 @@
   }
 
   var banner = null;
-  function root() { return (window.SelfIDeed && window.SelfIDeed.ROOT) || "/"; }
+  function legalUrl() { return window.SelfIDeed ? window.SelfIDeed.url("legal/#cookies") : "/" + lang + "/legal/#cookies"; }
   function show() {
     if (banner) return;
     banner = document.createElement("section");
@@ -67,7 +67,7 @@
     banner.setAttribute("aria-label", t.title);
     banner.innerHTML =
       "<h2>" + t.title + "</h2>" +
-      "<p>" + t.text + '<a href="' + root() + lang + '/legal/#cookies">' + t.more + "</a>.</p>" +
+      "<p>" + t.text + '<a href="' + legalUrl() + '">' + t.more + "</a>.</p>" +
       '<div class="consent__actions">' +
         '<button type="button" class="btn btn--secondary" data-consent="reject">' + t.reject + "</button>" +
         '<button type="button" class="btn btn--secondary" data-consent="accept">' + t.accept + "</button>" +

@@ -25,7 +25,7 @@
           if (supported.indexOf(l) !== -1) { pick = l; break; }
         }
       }
-      location.replace(pick + "/");
+      location.replace(pick + (/(^|\.)selfideed\.com$/.test(location.hostname) ? "/" : "/index.html"));
     })();
   </script>
 </head>
